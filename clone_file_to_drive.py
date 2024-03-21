@@ -38,5 +38,8 @@ for mypath in mypath_list:
 now = abs(datetime.datetime.now() - now)
 now = now.seconds
 print(f"Czas obliczeń: {now} sekund!")
+
 while True:
     time.sleep(10)
+
+print("STOP")
