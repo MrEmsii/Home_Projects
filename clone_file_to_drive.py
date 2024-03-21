@@ -38,3 +38,4 @@ now = abs(datetime.datetime.now() - now)
 now = now.seconds
 print(f"Czas obliczeń: {now} sekund!")
 
+print("STOP")
