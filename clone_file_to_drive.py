@@ -30,12 +30,10 @@ for mypath in mypath_list:
         #     os.mkdir(drive_dest + mypath + "/" + dirnames)
         #     print("Folder %s created!" % dirnames)
         if os.path.exists(drive_src + mypath + "/" + dirnames + "/G-Code"):    
-            shutil.copytree(drive_src + mypath + "/" + dirnames + "/G-Code", drive_dest + mypath + "/" + dirnames, ignore=shutil.ignore_patterns('*.ini', 'tmp*'), dirs_exist_ok=True)
+            shutil.copytree(drive_src + mypath + "/" + dirnames + "/G-Code", drive_dest + mypath + "/" + dirnames, ignore=shutil.ignore_patterns('*.ini', '.tmp*'), dirs_exist_ok=True)
             print("Folder %s created!" % dirnames)
              
     f = []
 now = abs(datetime.datetime.now() - now)
 now = now.seconds
 print(f"Czas obliczeń: {now} sekund!")
-
-print("STOP")
