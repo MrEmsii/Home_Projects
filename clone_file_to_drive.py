@@ -7,12 +7,13 @@
 # This tool is essential for private applications.
 
 import datetime
-import os, shutil
+import os, shutil, time
 
 drive_dest = "E:/"
 drive_src = "G:/.shortcut-targets-by-id/1NV5-iDSWkzujlti1hy-S4DMccnFwygvG/DYSK/"
 mypath_list = ["Druk_3D","Projekty_Inne"]
 
+print("Start calculating")
 now = datetime.datetime.now()
 f = []
 for mypath in mypath_list:
@@ -37,4 +38,5 @@ for mypath in mypath_list:
 now = abs(datetime.datetime.now() - now)
 now = now.seconds
 print(f"Czas obliczeń: {now} sekund!")
-
+while True:
+    time.sleep(10)
