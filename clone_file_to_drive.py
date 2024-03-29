@@ -13,27 +13,30 @@ drive_dest = "E:/"
 drive_src = "G:/.shortcut-targets-by-id/1NV5-iDSWkzujlti1hy-S4DMccnFwygvG/DYSK/"
 mypath_list = ["Druk_3D","Projekty_Inne"]
 
-now = datetime.datetime.now()
+liter = 0
+sum = 0
 f = []
+now = datetime.datetime.now()
+
 for mypath in mypath_list:
     for (dirpath, dirnames, filenames) in os.walk(drive_src + mypath):
-        
-        if mypath != "Wzór":
-            f.extend(dirnames)
+        f.extend(dirnames)
         break
+
     f.remove("Wzór")
-    
-    print(f)
 
     for dirnames in f:
-        # if not os.path.exists(drive_dest + mypath + "/" + dirnames):
-        #     os.mkdir(drive_dest + mypath + "/" + dirnames)
-        #     print("Folder %s created!" % dirnames)
-        if os.path.exists(drive_src + mypath + "/" + dirnames + "/G-Code"):    
-            shutil.copytree(drive_src + mypath + "/" + dirnames + "/G-Code", drive_dest + mypath + "/" + dirnames, ignore=shutil.ignore_patterns('*.ini', '.tmp*'), dirs_exist_ok=True)
-            print("Folder %s created!" % dirnames)
-             
+        if os.path.exists(drive_src + mypath + "/" + dirnames + "/G-Code"):
+            src = drive_src + mypath + "/" + dirnames + "/G-Code"
+            dest = drive_dest + mypath + "/" + dirnames
+            if (not os.path.exists(dest)) or (os.stat(src).st_mtime - os.stat(dest).st_mtime > 1) :
+                shutil.copytree(src, dest, ignore=shutil.ignore_patterns('*.ini', '.tmp*'), dirs_exist_ok=True, copy_function = shutil.copy2)
+        liter = (f.index(dirnames)+1)/(len(f)+0.1)*100/len(mypath_list)
+        string_in = str(round(sum + liter, 2)) + "%"
+        print(string_in, (20-len(string_in)) * " ", "Folder %s copied!" % dirnames)
+    sum = liter
     f = []
+print("100%", 16*" ", "All Folders copied!")
 now = abs(datetime.datetime.now() - now)
 now = now.seconds
-print(f"Czas obliczeń: {now} sekund!")
+print(f"Czas kopiowania: {now} sekund!")
