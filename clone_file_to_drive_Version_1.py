@@ -30,7 +30,6 @@ def copy():
         for (dirpath, dirnames, filenames) in os.walk(drive_src + mypath):
             f.extend(dirnames)
             break
-
         f.remove("Wzór")
         f.sort()
 
@@ -40,7 +39,7 @@ def copy():
                 dest = drive_dest + mypath + "/" + dirnames
                 liter = (f.index(dirnames)+1)/(len(f)+0.1)*100/len(mypath_list)
                 string_in = str(round(sum + liter, 2)) + "%"
-                if (not os.path.exists(dest)) or (os.stat(src).st_mtime - os.stat(dest).st_mtime > 1) or (get_size(src) != get_size(dest) and get_size(src) != "244 Bytes"):
+                if (not os.path.exists(dest)) or (os.stat(src).st_mtime - os.stat(dest).st_mtime > 1) or ((get_size(src) != get_size(dest)) and get_size(src) != "244 Bytes"):
                     shutil.copytree(src, dest, ignore=shutil.ignore_patterns('*.ini', '.tmp*'), dirs_exist_ok=True, copy_function = shutil.copy2)
                     print(f"{string_in.ljust(10)} | Folder {dirnames} copied!")
         sum = liter
