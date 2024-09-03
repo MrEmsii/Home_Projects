@@ -1,6 +1,6 @@
-# Author: Emsii 
+# Author: MrEmsii 
 # Date: 20.03.2024
-# https://github.com/EmsiiDiss
+# https://github.com/MrEmsii
 #
 # A program designed for copying folders and files from one location to another, 
 # specifically targeting folders containing G-code files. 
